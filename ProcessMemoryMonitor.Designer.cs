@@ -64,6 +64,7 @@
             btnRefresh.TabIndex = 1;
             btnRefresh.Text = "Refresh List";
             btnRefresh.UseVisualStyleBackColor = false;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // lblProcess
             // 
@@ -138,7 +139,7 @@
             // 
             timerRefresh.Interval = 1000;
             // 
-            // Form1
+            // ProcessMemoryMonitor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -155,7 +156,7 @@
             Controls.Add(cmbProcesses);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "Form1";
+            Name = "ProcessMemoryMonitor";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Process Memory Monitor";
             ResumeLayout(false);
