@@ -50,7 +50,9 @@
             cmbProcesses.Location = new Point(22, 59);
             cmbProcesses.Name = "cmbProcesses";
             cmbProcesses.Size = new Size(310, 23);
+            cmbProcesses.Sorted = true;
             cmbProcesses.TabIndex = 0;
+            cmbProcesses.SelectedIndexChanged += cmbProcesses_SelectedIndexChanged;
             // 
             // btnRefresh
             // 
@@ -138,6 +140,7 @@
             // timerRefresh
             // 
             timerRefresh.Interval = 1000;
+            timerRefresh.Tick += timerRefresh_Tick;
             // 
             // ProcessMemoryMonitor
             // 
