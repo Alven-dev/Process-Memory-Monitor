@@ -41,8 +41,8 @@
             timerRefresh = new System.Windows.Forms.Timer(components);
             lblStart = new Label();
             label3 = new Label();
-            txtThreshold = new Label();
-            textBox1 = new TextBox();
+            lblThreshold = new Label();
+            txtThreshold = new TextBox();
             lblInfoMb = new Label();
             button1 = new Button();
             pnlBarBg = new Panel();
@@ -178,25 +178,25 @@
             label3.Text = "2800 MB limit";
             label3.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // lblThreshold
+            // 
+            lblThreshold.AutoSize = true;
+            lblThreshold.Font = new Font("Consolas", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblThreshold.ForeColor = Color.FromArgb(160, 160, 156);
+            lblThreshold.Location = new Point(22, 296);
+            lblThreshold.Name = "lblThreshold";
+            lblThreshold.Size = new Size(97, 13);
+            lblThreshold.TabIndex = 12;
+            lblThreshold.Text = "Alert threshold";
+            // 
             // txtThreshold
             // 
-            txtThreshold.AutoSize = true;
-            txtThreshold.Font = new Font("Consolas", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtThreshold.ForeColor = Color.FromArgb(160, 160, 156);
-            txtThreshold.Location = new Point(22, 296);
+            txtThreshold.BackColor = Color.FromArgb(45, 45, 48);
+            txtThreshold.ForeColor = Color.FromArgb(232, 232, 230);
+            txtThreshold.Location = new Point(22, 312);
             txtThreshold.Name = "txtThreshold";
-            txtThreshold.Size = new Size(97, 13);
-            txtThreshold.TabIndex = 12;
-            txtThreshold.Text = "Alert threshold";
-            // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.FromArgb(45, 45, 48);
-            textBox1.ForeColor = Color.FromArgb(232, 232, 230);
-            textBox1.Location = new Point(22, 312);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 13;
+            txtThreshold.Size = new Size(100, 23);
+            txtThreshold.TabIndex = 13;
             // 
             // lblInfoMb
             // 
@@ -269,8 +269,8 @@
             Controls.Add(pnlBarBg);
             Controls.Add(button1);
             Controls.Add(lblInfoMb);
-            Controls.Add(textBox1);
             Controls.Add(txtThreshold);
+            Controls.Add(lblThreshold);
             Controls.Add(label3);
             Controls.Add(lblStart);
             Controls.Add(label2);
@@ -306,8 +306,8 @@
         private System.Windows.Forms.Timer timerRefresh;
         private Label lblStart;
         private Label label3;
-        private Label txtThreshold;
-        private TextBox textBox1;
+        private Label lblThreshold;
+        private TextBox txtThreshold;
         private Label lblInfoMb;
         private Button button1;
         private Panel pnlBarBg;
