@@ -53,6 +53,30 @@ namespace ProcessMemoryMonitor
             long bytes = found[0].WorkingSet64;
             long mb = bytes / (1024 * 1024);
             lblMemory.Text = mb.ToString();
+
+            int limit = 4096;
+            double percent = (double)mb / limit;
+            int fillWidth = (int)(percent * pnlBarBg.Width);
+
+            if (fillWidth > pnlBarBg.Width)
+            {
+                fillWidth = pnlBarBg.Width;
+            }
+            pnlBarFill.Width = fillWidth;
+
+
+            if (percent < 0.6)
+            {
+                pnlBarFill.BackColor = Color.FromArgb(74, 158, 255);
+            }
+            else if (percent < 0.85)
+            {
+                pnlBarFill.BackColor = Color.FromArgb(239, 159, 39);
+            }
+            else
+            {
+                pnlBarFill.BackColor = Color.FromArgb(232, 93, 93);
+            }
         }
 
         private void cmbProcesses_SelectedIndexChanged(object sender, EventArgs e)
