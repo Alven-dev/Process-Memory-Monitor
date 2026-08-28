@@ -64,18 +64,24 @@ namespace ProcessMemoryMonitor
             }
             pnlBarFill.Width = fillWidth;
 
+            int threshold = 3600;
 
-            if (percent < 0.6)
+            if (int.TryParse(txtThreshold.Text, out int parsed))
             {
-                pnlBarFill.BackColor = Color.FromArgb(74, 158, 255);
+                threshold = parsed;
             }
-            else if (percent < 0.85)
+
+            if (mb >= threshold)
+            {
+                pnlBarFill.BackColor = Color.FromArgb(232, 93, 93);     
+            }
+            else if (mb >= threshold * 0.9)
             {
                 pnlBarFill.BackColor = Color.FromArgb(239, 159, 39);
             }
             else
             {
-                pnlBarFill.BackColor = Color.FromArgb(232, 93, 93);
+                pnlBarFill.BackColor = Color.FromArgb(74, 158, 255);
             }
         }
 

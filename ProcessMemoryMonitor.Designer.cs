@@ -116,16 +116,16 @@
             lblMemory.ForeColor = Color.FromArgb(232, 232, 230);
             lblMemory.Location = new Point(22, 150);
             lblMemory.Name = "lblMemory";
-            lblMemory.Size = new Size(151, 41);
+            lblMemory.Size = new Size(37, 41);
             lblMemory.TabIndex = 5;
-            lblMemory.Text = "123test";
+            lblMemory.Text = "0";
             // 
             // lblMb
             // 
             lblMb.AutoSize = true;
             lblMb.Font = new Font("Consolas", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMb.ForeColor = Color.FromArgb(232, 232, 230);
-            lblMb.Location = new Point(168, 165);
+            lblMb.Location = new Point(109, 165);
             lblMb.Name = "lblMb";
             lblMb.Size = new Size(30, 22);
             lblMb.TabIndex = 6;
@@ -235,10 +235,10 @@
             // 
             // pnlBarFill
             // 
-            pnlBarFill.BackColor = Color.FromArgb(99, 153, 34);
+            pnlBarFill.BackColor = Color.FromArgb(74, 158, 255);
             pnlBarFill.Location = new Point(0, 2);
             pnlBarFill.Name = "pnlBarFill";
-            pnlBarFill.Size = new Size(100, 8);
+            pnlBarFill.Size = new Size(0, 8);
             pnlBarFill.TabIndex = 17;
             // 
             // lblStatus
