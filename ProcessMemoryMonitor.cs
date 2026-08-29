@@ -10,6 +10,15 @@ namespace ProcessMemoryMonitor
         private void LoadProcesses()
         {
             cmbProcesses.Items.Clear();
+            cmbProcesses.SelectedIndex = -1;
+
+            
+            btnStartStop.ForeColor = Color.FromArgb(110, 110, 106);
+            btnStartStop.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 70);
+
+            lblMemory.Text = "0";
+            pnlBarFill.Width = 0;
+            lblStatus.Text = "Stopped";
 
             Process[] processes = Process.GetProcesses();
 
@@ -29,6 +38,10 @@ namespace ProcessMemoryMonitor
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            if (timerRefresh.Enabled)
+            {
+                return;
+            }
             LoadProcesses();
         }
 
@@ -47,6 +60,7 @@ namespace ProcessMemoryMonitor
             if (found.Length == 0)
             {
                 lblMemory.Text = "-";
+                lblStatus.Text = "Process not found";
                 return;
             }
 
@@ -73,7 +87,7 @@ namespace ProcessMemoryMonitor
 
             if (mb >= threshold)
             {
-                pnlBarFill.BackColor = Color.FromArgb(232, 93, 93);     
+                pnlBarFill.BackColor = Color.FromArgb(232, 93, 93);
             }
             else if (mb >= threshold * 0.9)
             {
@@ -83,17 +97,54 @@ namespace ProcessMemoryMonitor
             {
                 pnlBarFill.BackColor = Color.FromArgb(74, 158, 255);
             }
+
+            lblStatus.Text = "Monitoring";
         }
 
         private void cmbProcesses_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateMemory();
-            timerRefresh.Enabled = true;
+            btnStartStop.Enabled = true;
+            btnStartStop.ForeColor = Color.FromArgb(232, 232, 230);
+            btnStartStop.FlatAppearance.BorderColor = Color.FromArgb(74, 158, 255);
         }
 
         private void timerRefresh_Tick(object sender, EventArgs e)
         {
             UpdateMemory();
+        }
+
+        private void btnStartStop_Click(object sender, EventArgs e)
+        {
+            if (cmbProcesses.SelectedIndex == -1)
+            {
+                return;
+            }
+            if (timerRefresh.Enabled)
+            {
+                btnStartStop.Text = "Start Monitoring";
+                btnStartStop.FlatAppearance.BorderColor = Color.FromArgb(74, 158, 255);
+                timerRefresh.Enabled = false;
+                pnlStatusDot.BackColor = Color.FromArgb(110, 110, 106);
+                lblStatus.Text = "Stopped";
+                btnRefresh.ForeColor = Color.FromArgb(232, 232, 230);
+                btnRefresh.FlatAppearance.BorderColor = Color.FromArgb(74, 158, 255);
+                txtThreshold.ReadOnly = false;
+                txtThreshold.BackColor = Color.FromArgb(45, 45, 48);
+                txtThreshold.ForeColor = Color.FromArgb(232, 232, 230);
+            }
+            else
+            {
+                btnStartStop.Text = "Stop Monitoring";
+                btnStartStop.FlatAppearance.BorderColor = Color.FromArgb(232, 93, 93);
+                timerRefresh.Enabled = true;
+                pnlStatusDot.BackColor = Color.FromArgb(99, 153, 34);
+                btnRefresh.ForeColor = Color.FromArgb(110, 110, 106);
+                btnRefresh.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 70);
+                txtThreshold.ReadOnly = true;
+                txtThreshold.BackColor = Color.FromArgb(38, 38, 40);
+                txtThreshold.ForeColor = Color.FromArgb(110, 110, 106);
+            }
         }
     }
 }

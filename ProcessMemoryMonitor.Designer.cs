@@ -44,7 +44,7 @@
             lblThreshold = new Label();
             txtThreshold = new TextBox();
             lblInfoMb = new Label();
-            button1 = new Button();
+            btnStartStop = new Button();
             pnlBarBg = new Panel();
             pnlBarFill = new Panel();
             lblStatus = new Label();
@@ -175,7 +175,7 @@
             label3.Name = "label3";
             label3.Size = new Size(85, 13);
             label3.TabIndex = 11;
-            label3.Text = "2800 MB limit";
+            label3.Text = "4000 MB limit";
             label3.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblThreshold
@@ -209,20 +209,21 @@
             lblInfoMb.TabIndex = 14;
             lblInfoMb.Text = "MB";
             // 
-            // button1
+            // btnStartStop
             // 
-            button1.BackColor = Color.FromArgb(45, 45, 48);
-            button1.FlatAppearance.BorderColor = Color.FromArgb(74, 158, 255);
-            button1.FlatAppearance.BorderSize = 2;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(232, 230, 230);
-            button1.Location = new Point(305, 296);
-            button1.Name = "button1";
-            button1.Size = new Size(127, 34);
-            button1.TabIndex = 15;
-            button1.Text = "Start Monitoring";
-            button1.UseVisualStyleBackColor = false;
+            btnStartStop.BackColor = Color.FromArgb(45, 45, 48);
+            btnStartStop.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 70);
+            btnStartStop.FlatAppearance.BorderSize = 2;
+            btnStartStop.FlatStyle = FlatStyle.Flat;
+            btnStartStop.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnStartStop.ForeColor = Color.FromArgb(110, 110, 106);
+            btnStartStop.Location = new Point(305, 296);
+            btnStartStop.Name = "btnStartStop";
+            btnStartStop.Size = new Size(127, 34);
+            btnStartStop.TabIndex = 15;
+            btnStartStop.Text = "Start Monitoring";
+            btnStartStop.UseVisualStyleBackColor = false;
+            btnStartStop.Click += btnStartStop_Click;
             // 
             // pnlBarBg
             // 
@@ -247,12 +248,13 @@
             lblStatus.ForeColor = Color.FromArgb(160, 160, 156);
             lblStatus.Location = new Point(39, 357);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(159, 15);
+            lblStatus.Size = new Size(103, 15);
             lblStatus.TabIndex = 17;
-            lblStatus.Text = "Monitoring - updated 1s ago";
+            lblStatus.Text = "Process not found";
             // 
             // pnlStatusDot
             // 
+            pnlStatusDot.BackColor = Color.FromArgb(110, 110, 106);
             pnlStatusDot.Location = new Point(27, 361);
             pnlStatusDot.Name = "pnlStatusDot";
             pnlStatusDot.Size = new Size(8, 8);
@@ -267,7 +269,7 @@
             Controls.Add(pnlStatusDot);
             Controls.Add(lblStatus);
             Controls.Add(pnlBarBg);
-            Controls.Add(button1);
+            Controls.Add(btnStartStop);
             Controls.Add(lblInfoMb);
             Controls.Add(txtThreshold);
             Controls.Add(lblThreshold);
@@ -309,7 +311,7 @@
         private Label lblThreshold;
         private TextBox txtThreshold;
         private Label lblInfoMb;
-        private Button button1;
+        private Button btnStartStop;
         private Panel pnlBarBg;
         private Panel pnlBarFill;
         private Label lblStatus;
