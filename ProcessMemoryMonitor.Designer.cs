@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProcessMemoryMonitor));
             cmbProcesses = new ComboBox();
             btnRefresh = new Button();
             lblProcess = new Label();
@@ -49,6 +50,7 @@
             pnlBarFill = new Panel();
             lblStatus = new Label();
             pnlStatusDot = new Panel();
+            notifyIcon = new NotifyIcon(components);
             pnlBarBg.SuspendLayout();
             SuspendLayout();
             // 
@@ -260,6 +262,14 @@
             pnlStatusDot.Size = new Size(8, 8);
             pnlStatusDot.TabIndex = 18;
             // 
+            // notifyIcon
+            // 
+            notifyIcon.BalloonTipIcon = ToolTipIcon.Warning;
+            notifyIcon.BalloonTipTitle = "Memory alert";
+            notifyIcon.Icon = (Icon)resources.GetObject("notifyIcon.Icon");
+            notifyIcon.Text = "Process Memory Monitor";
+            notifyIcon.Visible = true;
+            // 
             // ProcessMemoryMonitor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -285,6 +295,7 @@
             Controls.Add(btnRefresh);
             Controls.Add(cmbProcesses);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "ProcessMemoryMonitor";
             StartPosition = FormStartPosition.CenterScreen;
@@ -316,5 +327,6 @@
         private Panel pnlBarFill;
         private Label lblStatus;
         private Panel pnlStatusDot;
+        private NotifyIcon notifyIcon;
     }
 }

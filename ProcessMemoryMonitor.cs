@@ -1,11 +1,18 @@
 using System.Diagnostics;
+using System.Windows.Media;
+using Color = System.Drawing.Color;
+using System.IO;
 namespace ProcessMemoryMonitor
 {
     public partial class ProcessMemoryMonitor : Form
     {
+        private bool alertShown = false;
+        private MediaPlayer alertPlayer = new MediaPlayer();
         public ProcessMemoryMonitor()
         {
             InitializeComponent();
+            string path = Path.Combine(AppContext.BaseDirectory, "WarningMemory.wav");
+            alertPlayer.Open(new Uri(path));
         }
         private void LoadProcesses()
         {
@@ -44,8 +51,6 @@ namespace ProcessMemoryMonitor
             }
             LoadProcesses();
         }
-
-
         private void UpdateMemory()
         {
 
@@ -96,6 +101,18 @@ namespace ProcessMemoryMonitor
             else
             {
                 pnlBarFill.BackColor = Color.FromArgb(74, 158, 255);
+            }
+
+            if (mb >= threshold && !alertShown)
+            {
+                alertShown = true;
+                alertPlayer.Position = TimeSpan.Zero;
+                alertPlayer.Play();
+                notifyIcon.ShowBalloonTip(5000, "Memory alert", "Threshold exceeded, ArcheAge will collapse soon!", ToolTipIcon.Warning);
+            }
+            else if (mb < threshold)
+            {
+                alertShown = false;
             }
 
             lblStatus.Text = "Monitoring";
