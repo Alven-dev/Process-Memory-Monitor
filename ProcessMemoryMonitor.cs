@@ -6,6 +6,32 @@ namespace ProcessMemoryMonitor
 {
     public partial class ProcessMemoryMonitor : Form
     {
+        private void ClearShaderCache(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                lblStatus.Text = "Shader folder not found";
+                return;
+            }
+
+            if (!path.Contains("AAClassic"))
+            {
+                lblStatus.Text = "Path does not look like a game folder";
+                return;
+            }
+
+            try
+            {
+                Directory.Delete(path, true);
+                lblStatus.Text = "Shader cache cleared";
+                MessageBox.Show("Shader cache cleared.");
+            }
+            catch (Exception ex)
+            {
+                lblStatus.Text = $"Could not clear cache: {ex.Message}";
+            }
+        }
+        private bool processWasRunning = false;
         private bool alertShown = false;
         private MediaPlayer alertPlayer = new MediaPlayer();
         public ProcessMemoryMonitor()
@@ -66,8 +92,20 @@ namespace ProcessMemoryMonitor
             {
                 lblMemory.Text = "-";
                 lblStatus.Text = "Process not found";
+
+                if (processWasRunning)
+                {
+                    processWasRunning = false;
+                    string shaderPath = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                        "AAClassic", "USER", "shaders");
+                    ClearShaderCache(shaderPath);
+                }
+
                 return;
             }
+
+            processWasRunning = true;
 
             long bytes = found[0].WorkingSet64;
             long mb = bytes / (1024 * 1024);
