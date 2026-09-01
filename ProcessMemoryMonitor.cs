@@ -38,8 +38,16 @@ namespace ProcessMemoryMonitor
         public ProcessMemoryMonitor()
         {
             InitializeComponent();
-            string path = Path.Combine(AppContext.BaseDirectory, "WarningMemory.wav");
-            alertPlayer.Open(new Uri(path));
+
+            try
+            {
+                string path = Path.Combine(AppContext.BaseDirectory, "WarningMemory.wav");
+                alertPlayer.Open(new Uri(path));
+            }
+            catch
+            {
+
+            }
 
             txtShaderPath.Text = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -196,7 +204,6 @@ namespace ProcessMemoryMonitor
                 btnBrowse.ForeColor = Color.FromArgb(232, 232, 230);
                 btnBrowse.FlatAppearance.BorderColor = Color.FromArgb(74, 158, 255);
                 chkClearShaders.Enabled = true;
-                txtShaderPath.ReadOnly = false;
                 txtShaderPath.ReadOnly = false;
                 txtShaderPath.BackColor = Color.FromArgb(45, 45, 48);
                 txtShaderPath.ForeColor = Color.FromArgb(232, 232, 230);
