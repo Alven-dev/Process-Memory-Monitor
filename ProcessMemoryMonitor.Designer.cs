@@ -51,6 +51,10 @@
             lblStatus = new Label();
             pnlStatusDot = new Panel();
             notifyIcon = new NotifyIcon(components);
+            label4 = new Label();
+            chkClearShaders = new CheckBox();
+            btnBrowse = new Button();
+            txtShaderPath = new TextBox();
             pnlBarBg.SuspendLayout();
             SuspendLayout();
             // 
@@ -146,7 +150,7 @@
             // 
             label2.BackColor = Color.FromArgb(63, 63, 70);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(24, 347);
+            label2.Location = new Point(24, 441);
             label2.Name = "label2";
             label2.Size = new Size(410, 2);
             label2.TabIndex = 8;
@@ -248,7 +252,7 @@
             // 
             lblStatus.AutoSize = true;
             lblStatus.ForeColor = Color.FromArgb(160, 160, 156);
-            lblStatus.Location = new Point(39, 357);
+            lblStatus.Location = new Point(41, 448);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(103, 15);
             lblStatus.TabIndex = 17;
@@ -257,7 +261,7 @@
             // pnlStatusDot
             // 
             pnlStatusDot.BackColor = Color.FromArgb(110, 110, 106);
-            pnlStatusDot.Location = new Point(27, 361);
+            pnlStatusDot.Location = new Point(27, 452);
             pnlStatusDot.Name = "pnlStatusDot";
             pnlStatusDot.Size = new Size(8, 8);
             pnlStatusDot.TabIndex = 18;
@@ -270,12 +274,62 @@
             notifyIcon.Text = "Process Memory Monitor";
             notifyIcon.Visible = true;
             // 
+            // label4
+            // 
+            label4.BackColor = Color.FromArgb(63, 63, 70);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(22, 349);
+            label4.Name = "label4";
+            label4.Size = new Size(410, 2);
+            label4.TabIndex = 19;
+            // 
+            // chkClearShaders
+            // 
+            chkClearShaders.AutoSize = true;
+            chkClearShaders.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            chkClearShaders.ForeColor = Color.FromArgb(232, 230, 230);
+            chkClearShaders.Location = new Point(24, 409);
+            chkClearShaders.Name = "chkClearShaders";
+            chkClearShaders.Size = new Size(171, 19);
+            chkClearShaders.TabIndex = 20;
+            chkClearShaders.Text = "Clear shader cache on exit";
+            chkClearShaders.UseVisualStyleBackColor = true;
+            // 
+            // btnBrowse
+            // 
+            btnBrowse.BackColor = Color.FromArgb(45, 45, 48);
+            btnBrowse.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 70);
+            btnBrowse.FlatAppearance.BorderSize = 2;
+            btnBrowse.FlatStyle = FlatStyle.Flat;
+            btnBrowse.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBrowse.ForeColor = Color.FromArgb(232, 230, 230);
+            btnBrowse.Location = new Point(305, 367);
+            btnBrowse.Name = "btnBrowse";
+            btnBrowse.Size = new Size(127, 34);
+            btnBrowse.TabIndex = 21;
+            btnBrowse.Text = "Browse";
+            btnBrowse.UseVisualStyleBackColor = false;
+            btnBrowse.Click += btnBrowse_Click;
+            // 
+            // txtShaderPath
+            // 
+            txtShaderPath.BackColor = Color.FromArgb(45, 45, 48);
+            txtShaderPath.ForeColor = Color.FromArgb(232, 232, 230);
+            txtShaderPath.Location = new Point(22, 374);
+            txtShaderPath.Name = "txtShaderPath";
+            txtShaderPath.Size = new Size(277, 23);
+            txtShaderPath.TabIndex = 22;
+            // 
             // ProcessMemoryMonitor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
-            ClientSize = new Size(464, 381);
+            ClientSize = new Size(464, 472);
+            Controls.Add(txtShaderPath);
+            Controls.Add(btnBrowse);
+            Controls.Add(chkClearShaders);
+            Controls.Add(label4);
             Controls.Add(pnlStatusDot);
             Controls.Add(lblStatus);
             Controls.Add(pnlBarBg);
@@ -328,5 +382,9 @@
         private Label lblStatus;
         private Panel pnlStatusDot;
         private NotifyIcon notifyIcon;
+        private Label label4;
+        private CheckBox chkClearShaders;
+        private Button btnBrowse;
+        private TextBox txtShaderPath;
     }
 }

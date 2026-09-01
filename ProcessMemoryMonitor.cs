@@ -14,9 +14,10 @@ namespace ProcessMemoryMonitor
                 return;
             }
 
-            if (!path.Contains("AAClassic"))
+            if (!path.Contains("shaders"))
             {
-                lblStatus.Text = "Path does not look like a game folder";
+                lblStatus.Text = "Path does not look like a shaders folder";
+                MessageBox.Show("Path does not look like a shaders folder");
                 return;
             }
 
@@ -39,13 +40,17 @@ namespace ProcessMemoryMonitor
             InitializeComponent();
             string path = Path.Combine(AppContext.BaseDirectory, "WarningMemory.wav");
             alertPlayer.Open(new Uri(path));
+
+            txtShaderPath.Text = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "AAClassic", "USER", "shaders");
         }
         private void LoadProcesses()
         {
             cmbProcesses.Items.Clear();
             cmbProcesses.SelectedIndex = -1;
 
-            
+
             btnStartStop.ForeColor = Color.FromArgb(110, 110, 106);
             btnStartStop.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 70);
 
@@ -96,10 +101,11 @@ namespace ProcessMemoryMonitor
                 if (processWasRunning)
                 {
                     processWasRunning = false;
-                    string shaderPath = Path.Combine(
-                        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                        "AAClassic", "USER", "shaders");
-                    ClearShaderCache(shaderPath);
+                    
+                    if (chkClearShaders.Checked)
+                    {
+                        ClearShaderCache(txtShaderPath.Text);
+                    }
                 }
 
                 return;
@@ -187,6 +193,13 @@ namespace ProcessMemoryMonitor
                 txtThreshold.ReadOnly = false;
                 txtThreshold.BackColor = Color.FromArgb(45, 45, 48);
                 txtThreshold.ForeColor = Color.FromArgb(232, 232, 230);
+                btnBrowse.ForeColor = Color.FromArgb(232, 232, 230);
+                btnBrowse.FlatAppearance.BorderColor = Color.FromArgb(74, 158, 255);
+                chkClearShaders.Enabled = true;
+                txtShaderPath.ReadOnly = false;
+                txtShaderPath.ReadOnly = false;
+                txtShaderPath.BackColor = Color.FromArgb(45, 45, 48);
+                txtShaderPath.ForeColor = Color.FromArgb(232, 232, 230);
             }
             else
             {
@@ -199,7 +212,30 @@ namespace ProcessMemoryMonitor
                 txtThreshold.ReadOnly = true;
                 txtThreshold.BackColor = Color.FromArgb(38, 38, 40);
                 txtThreshold.ForeColor = Color.FromArgb(110, 110, 106);
+                btnBrowse.ForeColor = Color.FromArgb(110, 110, 106);
+                btnBrowse.FlatAppearance.BorderColor = Color.FromArgb(63, 63, 70);
+                txtShaderPath.ReadOnly = true;
+                chkClearShaders.Enabled = false;
+                txtShaderPath.BackColor = Color.FromArgb(38, 38, 40);
+                txtShaderPath.ForeColor = Color.FromArgb(110, 110, 106);
             }
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            if (timerRefresh.Enabled)
+            {
+                return;
+            }
+
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = txtShaderPath.Text;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtShaderPath.Text = dialog.SelectedPath;
+            }
+            
         }
     }
 }
