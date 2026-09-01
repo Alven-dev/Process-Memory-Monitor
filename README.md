@@ -2,7 +2,7 @@
 
 A lightweight Windows tool that tracks a process's memory usage and warns you before it hits the ceiling.
 
-<img width="462" height="409" alt="image" src="https://github.com/user-attachments/assets/3c4fe76f-cad1-4c81-9214-66602b052d06" />
+<img width="456" height="501" alt="Process Memory Monitor" src="https://github.com/user-attachments/assets/1c265701-75bb-4fb9-80f0-013d9c2302e4" />
 
 ## Why?
 
@@ -19,6 +19,7 @@ It works with any process, not just games.
 - Sound alarm and system tray notification when the threshold is crossed
 - Usage bar changes color as memory climbs - blue, orange, red
 - Alert fires once per crossing, not once per second
+- Optional automatic shader cache cleanup when the monitored process exits
   
 ## How to use?
 
@@ -27,6 +28,12 @@ It works with any process, not just games.
 3. Set your alert threshold in MB
 4. Press **Start Monitoring**
 
+## Shader cache cleanup
+
+Games that compile shaders on the fly build up a cache that can grow stale and cause crashes or stutter. ArcheAge recommends clearing it manually - this tool can do it for you.
+Tick **Clear shader cache on exit**, point the path field at your shaders folder, and the tool wipes it the moment the monitored process closes. The game rebuilds the folder on next launch.
+The default path assumes a standard ArcheAge Classic install. Use **Browse** if yours sits elsewhere, or if you play a different game.
+The cleanup only runs on folders whose path contains `shaders`, so a mistyped path **can't wipe something important**.
 The threshold field and the refresh button lock while monitoring is active. Press Stop Monitoring to change them.
 
 **Choosing a threshold**
