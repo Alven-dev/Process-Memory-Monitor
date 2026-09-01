@@ -49,4 +49,9 @@ The tool reads WorkingSet64, which is physical memory in use. That is close to, 
 
 C# / .NET 10 / Windows Forms
 
+### Verification
+[VirusTotal report](https://www.virustotal.com/gui/file/a7073dfbbd47006117758ff0ebc6c2dcf80e8fd608feb95ee1b230843ad3ef74) — clean, 0/69
+
+SHA-256: `a7073dfbbd47006117758ff0ebc6c2dcf80e8fd608feb95ee1b230843ad3ef74`
+
 ## Download
